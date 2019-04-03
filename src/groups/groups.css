@@ -1,0 +1,117 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    background-image: url('/img/notes.jpg') ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+
+}
+.groups button:focus {
+    outline: 0;
+}
+
+/* p {
+    font-family: 'Mali', cursive;
+} */
+.groups .container{
+    max-width: 540px;
+}
+
+.bubble {
+    /* display: inline-block; */
+    border: 2px solid transparent;
+    border-radius: 50%;
+    height: 180px;
+    width: 180px;
+    background: #d35400;
+    margin: 10px;
+    box-shadow: 0 5px 8px rgb(0, 0, 0);
+    overflow: hidden;
+    position: relative;
+    opacity: 0.85;
+
+}
+
+.add i {
+    transition: 0.2s linear;
+    color: #34495e;
+}
+
+.bubble p {
+    transition: 0.2s linear;
+}
+
+.bubble:hover i,
+.bubble:hover p {
+    transform: scale(1.3);
+    color: #d35400;
+}
+
+.bubble::before {
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: #34495e;
+    transform: rotate(45deg);
+    left: -110%;
+    top: 90%;
+}
+
+.bubble:hover::before {
+    animation: aaa 0.7s 1;
+    top: -10%;
+    left: -10%;
+}
+
+@keyframes aaa {
+    0% {
+        left: -110%;
+        top: 90%;
+    }
+
+    50% {
+        left: 20%;
+        top: -40%;
+    }
+
+    100% {
+        top: -10%;
+        left: -10%;
+    }
+
+}
+
+
+.scrollerG {
+    height: 400px;
+    max-width: 500px !important;
+    overflow-y: scroll;
+    scrollbar-color: transparent transparent;
+    scrollbar-width: thin;
+    /* overflow: hidden; */
+}
+
+.scrollerG:hover {
+    overflow-y: scroll;
+    border-radius: 15px;
+    scrollbar-color: rgba(160, 160, 160, 0.26) transparent;
+}
+
+.scrollerG::-webkit-scrollbar {
+    width: 15px;
+    height: 15px;
+}
+
+.scrollerG::-webkit-scrollbar-track-piece {
+    background-color: #C2D2E4;
+}
+
+.scrollerG::-webkit-scrollbar-thumb:vertical {
+    height: 30px;
+    background-color: #0A4C95;
+}
