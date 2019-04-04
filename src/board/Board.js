@@ -13,13 +13,20 @@ class Board extends Component{
         this.state = {
             tasksMain: [],
             groupsUsers: [],
-            creator: {}
+            creator: {},
+            ok: {}
         }
         this.userToDismiss = React.createRef();
         this.newUser = React.createRef();
         this.addUserToGroup = this.addUserToGroup.bind(this);
         this.dismissUser = this.dismissUser.bind(this);
         this.leaveGroup = this.leaveGroup.bind(this);
+        this.handler = this.handler.bind(this);
+    }
+
+    handler(){
+        this.fetchMainTasks();
+        this.fetchGroupsUsers();
     }
 
     componentDidMount(){
@@ -209,7 +216,7 @@ class Board extends Component{
                                             <canvas id="clock" width="90" height="90"></canvas>
                                         </div>
                                     </div>
-                                    <Foot  list = {this.state.groupsUsers} />
+                                    <Foot list={this.state.groupsUsers} handler = {this.handler} />
                                     <div>
                                         <button type="button" id="sidebarCollapse" className="btn btn-outline-light btn-bar" onClick={this.collapse1}>
                                             <i className="fas fa-plus"></i>
