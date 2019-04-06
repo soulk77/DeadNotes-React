@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./login.css";
 import { UserContext } from '../UserContext';
+import Nav from '../Nav';
 
 
 class Login extends Component{
@@ -46,39 +47,42 @@ class Login extends Component{
 
     render(){
         return(
-           <div className ="login">
-            <section id="mid">
-            <div className="container my-0">
-                <div className="row">
-                    <div className="col-md-6 offset-3 p-3">
-                        <h2 className="sing-in mb-5">Sign in</h2>
-                        <form  onSubmit={this.handleSubmit}>
-                            <div className="from-group user" >
-                                <input type="text"  required  ref={this.username} />
-                                <label htmlFor="">username</label>
+                <React.Fragment>
+                    <Nav />
+                    <div className ="login">
+                        <section id="mid">
+                            <div className="container my-0">
+                                <div className="row">
+                                    <div className="col-md-6 offset-3 p-3">
+                                        <h2 className="sing-in mb-5">Sign in</h2>
+                                        <form  onSubmit={this.handleSubmit}>
+                                            <div className="from-group user" >
+                                                <input type="text"  required  ref={this.username} />
+                                                <label htmlFor="">username</label>
+                                            </div>
+                                            <div className="form-group user">
+                                                <input type="password"  required  ref={this.password} />
+                                                <label htmlFor="">password</label>
+                                            </div>
+                                            <div className="form-group">
+                                                {/* <a href="#">Register</a> */}
+                                            </div>
+                                            <div className="form-group">
+                                                {/* <a href="#">forgot password?</a> */}
+                                            </div>
+                                            <div className="alert alert-danger d-none" role="alert">
+                                                wrong credentials
+                                            </div>
+                                            <div className="form-group sub mt-5">
+                                                <input type="submit" value="login" className="btn btn-outline-dark"/>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="form-group user">
-                                <input type="password"  required  ref={this.password} />
-                                <label htmlFor="">password</label>
-                            </div>
-                            <div className="form-group">
-                                {/* <a href="#">Register</a> */}
-                            </div>
-                            <div className="form-group">
-                                {/* <a href="#">forgot password?</a> */}
-                            </div>
-                            <div className="alert alert-danger d-none" role="alert">
-                                wrong credentials
-                            </div>
-                            <div className="form-group sub mt-5">
-                                <input type="submit" value="login" className="btn btn-outline-dark"/>
-                            </div>
-                        </form>
+                        </section>
                     </div>
-                </div>
-            </div>
-        </section>
-        </div>
+               </React.Fragment>    
         );
     }
 

@@ -39,7 +39,7 @@ class MainTasks extends Component{
                         )
                     })}
                 </div> 
-                <Modal2  task = {this.state.currentTask} creator = {this.props.creator} />
+                <Modal2  task = {this.state.currentTask} />
             </React.Fragment>  
         )
     }
@@ -143,7 +143,7 @@ export const Modal2 = props =>{
                                         </div>
                                         </div>
                                         <div className="modal-footer">
-                                        <ModalButtons creator = {props.creator} />
+                                        <ModalButtons />
                                         {/* <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button type="button" className="btn btn-danger" data-dismiss="modal">Delete</button>
                                         <button type="button" className="btn btn-success" data-dismiss="modal">Completed</button> */}

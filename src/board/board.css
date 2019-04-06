@@ -1,3 +1,14 @@
+.completed{
+    border: 2px solid green;
+}
+
+.board{
+    background-image: url('/img/') ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
 .flex-container {
     width: 100%;
     height: 100%;
@@ -5,10 +16,6 @@
     justify-content: center;
     align-items: center;
   }
-
-/* #main-b{
-    max-height: 550px ;
-}    */
 
 /* ---------------------------------------------------
     SIDEBAR STYLE
@@ -147,10 +154,8 @@ a.article:hover {
 
 #content {
     width: 100%;
-    /* padding: 20px; */
     min-height: 100vh;
     transition: all 0.3s;
-    /* position: absolute; */
     top: 0;
     right: 0;
 }
@@ -174,7 +179,6 @@ a.article:hover {
 
 .one,
 .two {
-    /* overflow: hidden; */
     padding: 0;
     margin: 0;
 }
@@ -194,7 +198,7 @@ a.article:hover {
     /* display: inline-block; */
     align-content: center;
     border: 2px solid transparent;
-    border-radius: 20%;
+    border-radius: 50%;
     height: 140px;
     width: 140px;
     background: #73dbc4;
@@ -206,13 +210,16 @@ a.article:hover {
 }
 
 
+
 /******* SCROLL ********/
 .scrollerBee {
     height: 600px !important;
     max-width: 800px !important;
     overflow-y: scroll;
+    overflow-x: initial;
     scrollbar-color: transparent transparent;
     scrollbar-width: thin;
+
     /* overflow: hidden; */
 }
 
@@ -220,11 +227,6 @@ a.article:hover {
     overflow-y: scroll;
     border-radius: 15px;
     scrollbar-color: rgba(160, 160, 160, 0.26) transparent;
-}
-
-.scrollerBee::-webkit-scrollbar {
-    width: 15px;
-    height: 15px;
 }
 
 .scrollerBee::-webkit-scrollbar-track-piece {
@@ -251,7 +253,7 @@ a {
  }
 
 button:focus {
-    outline: 0;
+    outline: 0 !important;
 }
 
 .del {
@@ -260,15 +262,6 @@ button:focus {
     top: 0;
     color: green;
 }
-
-/* .nav-link {
-    border-bottom: 2px solid transparent;
-    font-family: 'Srisakdi', cursive;
-}
-
-.nav-link:hover {
-    border-bottom: 2px solid #73dbc4;
-} */
 
 .txt {
     word-break: break-all !important;

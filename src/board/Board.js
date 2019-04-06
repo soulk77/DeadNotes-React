@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import "./board.css";
 import MainTasks , {GroupUsersSelect , Buttons, GroupUsersLi}  from './MainTasks';
 import Foot from "./Foot";
-// import { UserContext } from '../UserContext';
+import Nav from '../Nav';
 
 class Board extends Component{
-
-    // static contextType = UserContext;
 
     constructor(props){
         super(props);
         this.state = {
             tasksMain: [],
+            tasksForEver: [],
+            tasksExpired: [],
+            tasksCompleted: [],
             groupsUsers: [],
-            creator: {},
-            ok: {}
+            creator: {}
         }
         this.userToDismiss = React.createRef();
         this.newUser = React.createRef();
@@ -25,32 +25,51 @@ class Board extends Component{
     }
 
     handler(){
-        this.fetchMainTasks();
+        this.fetchTasks(1);
+        this.fetchTasks(2);
+        this.fetchTasks(3);
         this.fetchGroupsUsers();
     }
 
     componentDidMount(){
-        this.fetchMainTasks();
+        this.fetchTasks(1);
+        this.fetchTasks(2);
+        this.fetchTasks(3);
         this.fetchGroupsUsers();
     }
-
-    fetchMainTasks(){
+    
+    
+    fetchTasks(status){
         let user = localStorage.getItem('username');
         let id = parseInt(localStorage.getItem('activeGroup'));
         window.$.ajax({
             url: 'http://localhost:8080/api/tasks',
-            dataType: 'json',                       
+            dataType: 'json',
             type: 'POST',
             data: {
                 username: user,
-                id_group: id
-            }            
-       }).done ( data => {
-        //    console.log(data);
-           this.setState({
-               tasksMain: data
-           });
-       });
+                id_group: id,
+                status: status
+            }
+        }).done(data => {
+            if (status === 1) {
+                this.setState({
+                    tasksMain: data
+                });
+            } else if (status === 2) {
+                this.setState({
+                    tasksForEver: data
+                });
+            } else if (status === 3) {
+                this.setState({
+                    tasksExpired: data
+                });
+            } else {
+                this.setState({
+                    tasksCompleted: data
+                });
+            }
+        });
     }
 
     fetchGroupsUsers(){
@@ -65,7 +84,6 @@ class Board extends Component{
                 id_group: id
             }            
        }).done ( data => {
-        //    console.log(data);
            this.setState({
                groupsUsers: data.userList,
                creator: data.creator
@@ -135,7 +153,8 @@ class Board extends Component{
 
     render(){
         return(
-            <div>
+            <div className = "board">
+                <Nav />
                 <div className="wrapper">
                     <nav id="sidebar">
                         <button id="dismiss" className="btn btn-outline-light" onClick={this.collapse1}>
@@ -163,19 +182,7 @@ class Board extends Component{
                                             </div>
                                             <div  className="container scrollerBee">
                                                 <div className="row  justify-content-center">
-                                                    <button className="bubble2 mx-auto my-3 ss">
-
-                                                    </button>
-                                                    <div className="bubble2 mx-auto my-3">
-
-                                                    </div>
-                                                    <div className="bubble2 mx-auto my-3">
-
-                                                    </div>
-                                                    <div className="bubble2 mx-auto my-3">
-
-                                                    </div>
-
+                                                  <MainTasks list = {this.state.tasksExpired} creator = {this.state.creator} />
                                                 </div>
                                             </div>
 
@@ -186,7 +193,7 @@ class Board extends Component{
                                             </div>
                                             <div className="container scrollerBee mt-4">
                                                 <div className="row  justify-content-center">
-                                                    <MainTasks list = {this.state.tasksMain} />
+                                                    <MainTasks list = {this.state.tasksMain} creator = {this.state.creator} />
                                                 </div>
                                             </div>
                                         </div>
@@ -196,12 +203,7 @@ class Board extends Component{
                                             </div>
                                             <div className="container scrollerBee">
                                                 <div className="row  justify-content-center">
-                                                    <div className="bubble2 mr-1 my-3">
-
-                                                    </div>
-                                                    <div className="bubble2 mr-1 my-3">
-
-                                                    </div>
+                                                    <MainTasks list = {this.state.tasksForEver} creator = {this.state.creator} />
                                                 </div>
                                             </div>
                                         </div>
@@ -216,7 +218,7 @@ class Board extends Component{
                                             <canvas id="clock" width="90" height="90"></canvas>
                                         </div>
                                     </div>
-                                    <Foot list={this.state.groupsUsers} handler = {this.handler} />
+                                    <Foot list={this.state.groupsUsers} handler = {this.handler}  creator = {this.state.creator} />
                                     <div>
                                         <button type="button" id="sidebarCollapse" className="btn btn-outline-light btn-bar" onClick={this.collapse1}>
                                             <i className="fas fa-plus"></i>

@@ -39,7 +39,7 @@ class App extends Component {
     return (
       <UserProvider value={this.state}>
       <Router>
-        <Nav />
+        {/* <Nav /> */}
         <Route path = "/" exact component = {Home} />
         {/* <Route path = "/Home"  component = {Home} /> */}
         <Route path = {['/login', '/register']} component = {Logo} />

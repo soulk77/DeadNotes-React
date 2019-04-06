@@ -10,10 +10,8 @@ export class Bubbles extends Component{
         this.forward = this.forward.bind(this);
     }
 
-    forward(e){
-        let active = parseInt(e);
-        console.log(e);
-        localStorage.setItem('activeGroup',e);
+    forward(active){
+        localStorage.setItem('activeGroup',active);
         this.props.history.push('/board');
     }
 
@@ -25,7 +23,7 @@ export class Bubbles extends Component{
                 <i className="fas fa-plus fa-4x"></i>
             </button>
             {Object.keys(groups).map( k =>{
-                return (<button className="bubble groups text-center" key = {k} onClick={ ()=>{this.forward(groups[k].id_group)}}>
+                return (<button className="bubble groups text-center" key = {k} onClick={()=>{this.forward(groups[k].id_group)}}>
                             <p>{groups[k].groupName}</p>
                         </button>);
             })}

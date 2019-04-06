@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { UserContext } from '../UserContext';
+import Nav from '../Nav';
 
 
 class Register extends Component{
@@ -67,42 +68,45 @@ class Register extends Component{
 
     render(){
         return(
-            <div className="register">
-            <div className="container mt-0">
-            <div className="row justify-content-center ">
-                <form  method="POST" className="col-sm-6" action="#" onSubmit={this.passwordCheck} >
-                    <div className="form-group ">
-                        <h3 className="register">Register</h3>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="username">Username</label>
-                        <input type="text" className="form-control" placeholder="username" id="username" required ref={this.username} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" className="form-control" placeholder="password" id="password" required ref={this.password} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password2">Confirm password</label>
-                        <input type="password" className="form-control" placeholder="password" id="password2" required ref={this.password2}/> 
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input type="email" className="form-control" placeholder="email" id="email" required ref={this.email} />
-                    </div>
-                    <div className="al1 alert alert-danger d-none w-100 ml-0" role="alert">
-                        passwords dont match
-                    </div>
-                    <div className="al2 alert alert-danger d-none w-100 ml-0" role="alert">
-                        username exists
-                    </div>
-                    <div className="">
-                        <input type="submit" value="submit" className="btn btn-outline-dark float-right"/>
-                    </div>
-                </form>
-            </div>
-        </div>
-     </div>
+                <React.Fragment>
+                    <Nav />
+                    <div className="register">
+                        <div className="container mt-0">
+                            <div className="row justify-content-center ">
+                                <form  method="POST" className="col-sm-6" action="#" onSubmit={this.passwordCheck} >
+                                    <div className="form-group ">
+                                        <h3 className="register">Register</h3>
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="username">Username</label>
+                                        <input type="text" className="form-control" placeholder="username" id="username" required ref={this.username} />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="password">Password</label>
+                                        <input type="password" className="form-control" placeholder="password" id="password" required ref={this.password} />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="password2">Confirm password</label>
+                                        <input type="password" className="form-control" placeholder="password" id="password2" required ref={this.password2}/> 
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="email">Email</label>
+                                        <input type="email" className="form-control" placeholder="email" id="email" required ref={this.email} />
+                                    </div>
+                                    <div className="al1 alert alert-danger d-none w-100 ml-0" role="alert">
+                                        passwords dont match
+                                    </div>
+                                    <div className="al2 alert alert-danger d-none w-100 ml-0" role="alert">
+                                        username exists
+                                    </div>
+                                    <div className="">
+                                        <input type="submit" value="submit" className="btn btn-outline-dark float-right"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                </div>
+              </React.Fragment>
         );
     }
 

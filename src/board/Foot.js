@@ -9,7 +9,11 @@ class Foot extends Component{
         this.task = React.createRef();
         this.user = React.createRef();
         this.deadline = React.createRef();
+        this.taskTitle2 = React.createRef();
+        this.task2 = React.createRef();
+        this.user2 = React.createRef();
         this.addTaskWithDate = this.addTaskWithDate.bind(this);
+        this.addTaskWithOutDate = this.addTaskWithOutDate.bind(this);
     }
 
     addTaskWithDate() {
@@ -28,21 +32,47 @@ class Foot extends Component{
                     username: user,
                     taskTitle: taskTitle,
                     task: task,
-                    user: user,
-                    deadline: deadline
+                    deadline: deadline,
+                    status: 1
                 }
             }).done(data => {
                 this.props.handler();
             });
             this.props.handler();
         }
+    }
 
-}
+    addTaskWithOutDate(){
+        let id = localStorage.getItem('activeGroup');
+        let taskTitle2 = this.taskTitle2.current.value;
+        let task2 = this.task2.current.value;
+        let user2 = this.user2.current.value;
+        if (taskTitle2.trim() !== '' && task2.trim() !== '') {
+            window.$.ajax({
+                url: 'http://localhost:8080/api/tasks/assign',
+                dataType: 'json',
+                type: 'POST',
+                data: {
+                    id_group: id,
+                    username: user2,
+                    taskTitle: taskTitle2,
+                    task: task2,
+                    deadline: '9999-01-01',
+                    status: 2
+                }
+            }).done(data => {
+                this.props.handler();
+            });
+            this.props.handler();
+        }
+    }
+
+
 
     render(){
         return(
             <React.Fragment>
-                <FootButtons />
+                <FootButtons creator = {this.props.creator} />
                 <div className="modal fade" id="clearModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div className="modal-dialog" role="document">
@@ -118,15 +148,15 @@ class Foot extends Component{
                             <form>
                                 <div className="form-group">
                                     <label htmlFor="title">Task title</label>
-                                    <input type="text" className="form-control" placeholder="Title" id="title" required   />
+                                    <input type="text" className="form-control" placeholder="Title" id="title" required  ref = {this.taskTitle2}  />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="task">Task</label>
-                                    <textarea className="form-control" id="task" rows="3" required></textarea>
+                                    <textarea className="form-control" id="task" rows="3" required ref = {this.task2}></textarea>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="user">Select User</label>
-                                    <select className="form-control form-control-sm" id="user" >
+                                    <select className="form-control form-control-sm" id="user" ref = {this.user2} >
                                     <GroupUsersSelect  list = {this.props.list} />
                                     </select>
                                 </div>
@@ -134,7 +164,7 @@ class Foot extends Component{
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">submit</button>
+                            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.addTaskWithOutDate}>submit</button>
                         </div>
                     </div>
                 </div>
@@ -147,23 +177,44 @@ class Foot extends Component{
 }
 
 const FootButtons = props =>{
+    let creator = props.creator;
+    let user = localStorage.getItem('username');
 
-    return(
+    if(user === creator){
+        return(
+                <React.Fragment>
+                    <div className="one column col-3">
+                        <button className="btn btn-outline-light" data-toggle="modal"
+                                data-target="#clearModal">clear all</button>
+                    </div>
+                    <div className="two column col-3 col-md-6">
+                        <button className="btn btn-outline-light" data-toggle="modal"
+                            data-target="#addModal">add</button>
+                    </div>
+                    <div className="one column col-3">
+                        <button className="btn btn-outline-light" data-toggle="modal"
+                            data-target="#addModal2">add</button>
+                    </div>
+                </React.Fragment>
+        );
+    }else{
+        return(
             <React.Fragment>
                 <div className="one column col-3">
                     <button className="btn btn-outline-light" data-toggle="modal"
-                            data-target="#clearModal">clear all</button>
+                            data-target="#clearModal" disabled>clear all</button>
                 </div>
                 <div className="two column col-3 col-md-6">
                     <button className="btn btn-outline-light" data-toggle="modal"
-                        data-target="#addModal">add</button>
+                        data-target="#addModal" disabled>add</button>
                 </div>
                 <div className="one column col-3">
                     <button className="btn btn-outline-light" data-toggle="modal"
-                        data-target="#addModal2">add</button>
+                        data-target="#addModal2" disabled>add</button>
                 </div>
-            </React.Fragment>
-    );
+             </React.Fragment>
+        );
+    }
 }
 export default Foot;
 

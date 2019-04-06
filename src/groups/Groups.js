@@ -3,6 +3,7 @@ import './groups.css';
 import { UserContext } from '../UserContext';
 import Bubbles from './Bubbles';
 import Delete from './Delete';
+import Nav from '../Nav';
 
 
 class Groups extends Component {
@@ -102,49 +103,51 @@ class Groups extends Component {
 
     render(){
         return(
+            <React.Fragment>
             <div className = "groups">
-            <div className = "theimage"></div>
+            <Nav />
                 <section id="top">
-        <div className="box">
-            <div className="container mt-5 scrollerG">
-                 <Bubbles list = {this.state.groups} history={this.props.history} />
-            </div>
-            <div className="container mt-5">
-                 <Delete list = {this.state.groupsCreated}  handleSubmit={this.handleSubmit} />
-            </div>
-        </div>
-    </section>
-    <section id="add-modal">
-        <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div className="modal-dialog" role="document">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">New Group</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <div className="box">
+                        <div className="container mt-5 scrollerG">
+                        <Bubbles list = {this.state.groups} history={this.props.history} />
                     </div>
-                    <div className="modal-body">
-                        <form className="mod" action="#" method="POST">
-                            <div className="form-group">
-                                <label className ="col-form-label ">Group Name</label>
-                                <input type="text" className="form-control input1" maxLength="20" required ref={this.groupName}/>
-                            </div>
-                            <div className="alert alert-danger d-none" role="alert">
-                                Group Name Required
-                            </div>
-                        </form>
-                    </div>
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary apply" onClick = {this.applyModal} data-dismiss="modal" >Apply</button>
+                    <div className="container mt-5">
+                        <Delete list = {this.state.groupsCreated}  handleSubmit={this.handleSubmit} />
                     </div>
                 </div>
+                </section>
+                <section id="add-modal">
+                    <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title" id="exampleModalLabel">New Group</h5>
+                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div className="modal-body">
+                                    <form className="mod" action="#" method="POST">
+                                        <div className="form-group">
+                                            <label className ="col-form-label ">Group Name</label>
+                                            <input type="text" className="form-control input1" maxLength="20" required ref={this.groupName}/>
+                                        </div>
+                                        <div className="alert alert-danger d-none" role="alert">
+                                            Group Name Required
+                                        </div>
+                                    </form>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" className="btn btn-primary apply" onClick = {this.applyModal} data-dismiss="modal" >Apply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </div>
-    </section>
-            </div>
+            </React.Fragment>
         );
     }
 }

@@ -15,17 +15,18 @@ const NavLink = props => {
 class NavMenu extends Component {
     render(){
         if(this.props.context.username){
-            return(
-                    <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <NavLink label="Home" to="/" location={this.props.location.pathname} />
-                        <NavLink label="Groups" to="/groups" location={this.props.location.pathname} />
-                    </ul>
+            return(               
+                    
+                    <div className="collapse navbar-collapse bg-black" id="navbarTogglerDemo02">
+                        <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+                            <NavLink label="Home" to="/" location={this.props.location.pathname} />
+                            <NavLink label="Groups" to="/groups" location={this.props.location.pathname} />
+                        </ul>
                     </div>
                  );
         }else{
             return(
-                    <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <div className="collapse navbar-collapse bg-black" id="navbarTogglerDemo02">
                       <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                          <NavLink label="Home" to="/" location={this.props.location.pathname} />
                          <NavLink label="Login" to="/login" location={this.props.location.pathname} />

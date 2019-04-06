@@ -2,11 +2,11 @@ html {
     width: 100%;
     height: 100%;
 }
-body {
+.groups {
     background-image: url('/img/notes.jpg') ;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100%;
+    height: 100vh;
     font-family: 'Montserrat', sans-serif;
 
 }
@@ -14,9 +14,6 @@ body {
     outline: 0;
 }
 
-/* p {
-    font-family: 'Mali', cursive;
-} */
 .groups .container{
     max-width: 540px;
 }
