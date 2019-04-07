@@ -211,13 +211,13 @@ class Board extends Component{
                                 </div>
                             </div>
                         </section>
-                            <div className="container outC mt-3">
+                            <div className="container outC mt-3 theFoot">
                                 <div className="row outR">
-                                    <div id="clock_div">
+                                    {/* <div id="clock_div">
                                         <div className="flex-container">
                                             <canvas id="clock" width="90" height="90"></canvas>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <Foot list={this.state.groupsUsers} handler = {this.handler}  creator = {this.state.creator} />
                                     <div>
                                         <button type="button" id="sidebarCollapse" className="btn btn-outline-light btn-bar" onClick={this.collapse1}>

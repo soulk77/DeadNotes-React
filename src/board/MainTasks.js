@@ -34,7 +34,8 @@ class MainTasks extends Component{
                              onClick={()=>this.setState({
                                 currentTask: tasks[k]
                              })} >
-                                <p className="txt">{tasks[k].taskTitle}</p>
+                                <p class="txt_tittle mb-1">{tasks[k].taskTitle}</p>
+                                <p class="txt_user font-italic mb-0 mt-2">{tasks[k].username}</p>
                             </button>
                         )
                     })}
@@ -81,14 +82,14 @@ export const Buttons = props => {
         return(
             <React.Fragment>
             <li>
-                 <button className="btn btn-info w-100" data-toggle="modal"
+                 <button className="btn btn-outline-info w-100" data-toggle="modal"
                           data-target="#addUserModal">Add User</button>
             </li>
             <li>
                  <button className="btn btn btn-outline-warning w-100 mt-2" disabled>Leave Group</button>
             </li>            
             <li>
-                 <button className="btn btn-danger w-100 mt-2" data-toggle="modal"
+                 <button className="btn btn-outline-danger w-100 mt-2" data-toggle="modal"
                           data-target="#dismissUserModal">Dismiss User</button>
             </li>
 
@@ -98,14 +99,14 @@ export const Buttons = props => {
         return(
             <React.Fragment>
                 <li>
-                    <button className="btn btn-info w-100" disabled>Add User</button>
+                    <button className="btn btn-outline-info w-100" disabled>Add User</button>
                 </li>
                 <li>
                     <button className="btn btn btn-outline-warning w-100 mt-2" data-toggle="modal"
                           data-target="#LeaveModal">Leave Group</button>
                 </li>                
                 <li>
-                    <button className="btn btn-danger w-100 mt-2" disabled>Dismiss User</button>
+                    <button className="btn btn-outline-danger w-100 mt-2" disabled>Dismiss User</button>
                 </li>
 
             </React.Fragment>

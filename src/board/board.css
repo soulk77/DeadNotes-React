@@ -1,12 +1,17 @@
 .completed{
     border: 2px solid green;
 }
+.theFoot{
+    background-color: transparent;
+}
 
 .board{
-    background-image: url('/img/') ;
+    background-image: url('/img/board.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
+    height: 108vh;
 }
 
 .flex-container {
@@ -28,11 +33,12 @@
     left: -250px;
     height: 100vh;
     z-index: 999;
-    background: #233142;
+    background: #393e46;
     color: #fff;
     transition: all 0.3s;
     overflow-y: auto;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+    opacity: 0.8;
 }
 
 #sidebar.active {
@@ -75,7 +81,7 @@
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #233142;
+    background: #393e46;
 }
 
 #sidebar ul.components {
@@ -201,12 +207,16 @@ a.article:hover {
     border-radius: 50%;
     height: 140px;
     width: 140px;
-    background: #73dbc4;
+    background: #393e46;
     box-shadow: 0 2px 2px rgb(0, 0, 0);
-    overflow: hidden;
+    /* overflow: hidden; */
     position: relative;
-    opacity: 0.85;
-    color: #34495e;
+    opacity: 0.7;
+    color: #000;
+}
+
+.two .bubble2{
+    margin-left: 20px;
 }
 
 
@@ -244,8 +254,8 @@ a.article:hover {
 }
 
 .bubble2:hover {
-    background: #34495e;
-    color: #73dbc4;
+    background: #dfdfdf;
+    opacity: 0.8;
 }
 
 a {
@@ -263,10 +273,17 @@ button:focus {
     color: green;
 }
 
-.txt {
+.txt_user {
     word-break: break-all !important;
-
+    color: #fff;
 }
+
+.txt_tittle {
+    word-break: break-all !important;
+    font-size: 18px;
+}
+
+
 #clock_div{
     position: fixed;
     left: 0;

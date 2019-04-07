@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom";
 import { UserConsumer } from './UserContext';
+import './nav.css';
 
 const NavLink = props => {    
     const link = <Link className="nav-link" to={props.to}>{props.label}</Link>;

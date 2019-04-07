@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import './groups.css';
+import './flipclock.css';
 import { UserContext } from '../UserContext';
 import Bubbles from './Bubbles';
 import Delete from './Delete';
 import Nav from '../Nav';
+// import $ from 'jquery'; 
+// import FlipClock from './flipclock';
+// import Clock from "react-flip-clock-en"; 
 
 
 class Groups extends Component {
@@ -74,7 +78,20 @@ class Groups extends Component {
     componentDidMount(){
         this.fetchAllGroups();
         this.fetchCreatedGroupds();
+        // this.theClock();
+
     }
+
+    // theClock(){
+    //     var clock;
+    
+    //     $(document).ready(()=> {
+    //         clock = $('.clock').FlipClock({
+    //             clockFace: 'TwentyFourHourClock',
+    //             showSeconds: false
+    //         });
+    //     });
+    // }
 
     applyModal(e){
         const name = this.groupName.current.value;
@@ -104,6 +121,7 @@ class Groups extends Component {
     render(){
         return(
             <React.Fragment>
+            
             <div className = "groups">
             <Nav />
                 <section id="top">
@@ -115,6 +133,7 @@ class Groups extends Component {
                         <Delete list = {this.state.groupsCreated}  handleSubmit={this.handleSubmit} />
                     </div>
                 </div>
+                {/* <Clock2 /> */}
                 </section>
                 <section id="add-modal">
                     <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -153,3 +172,16 @@ class Groups extends Component {
 }
 
 export default Groups;
+
+// export const Clock2 = props =>{
+
+//     return(
+//         <React.Fragment>
+            
+//             <div class="clock m-0 pl-5 pt-5" ></div>
+//             <script src="flipclock.js"></script>
+//         </React.Fragment>
+//     )
+
+
+// }

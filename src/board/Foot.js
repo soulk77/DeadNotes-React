@@ -14,6 +14,7 @@ class Foot extends Component{
         this.user2 = React.createRef();
         this.addTaskWithDate = this.addTaskWithDate.bind(this);
         this.addTaskWithOutDate = this.addTaskWithOutDate.bind(this);
+        this.clearTasks = this.clearTasks.bind(this);
     }
 
     addTaskWithDate() {
@@ -67,6 +68,22 @@ class Foot extends Component{
         }
     }
 
+    clearTasks(){
+        let id = localStorage.getItem('activeGroup');
+        window.$.ajax({
+            url: 'http://localhost:8080/api/tasks/assign',
+            dataType: 'json',
+            type: 'POST',
+            data: {
+                id: id,
+            }
+        }).done(data => {
+            console.log('ok');
+            // this.props.handler();
+        });
+
+    }
+
 
 
     render(){
@@ -88,7 +105,7 @@ class Foot extends Component{
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" className="btn btn-primary" data-dismiss="modal">submit</button>
+                                <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.clearTasks}>submit</button>
                             </div>
                         </div>
                     </div>
@@ -185,15 +202,15 @@ const FootButtons = props =>{
                 <React.Fragment>
                     <div className="one column col-3">
                         <button className="btn btn-outline-light" data-toggle="modal"
-                                data-target="#clearModal">clear all</button>
+                                data-target="#clearModal"><i class="fas fa-minus"></i></button>
                     </div>
                     <div className="two column col-3 col-md-6">
-                        <button className="btn btn-outline-light" data-toggle="modal"
-                            data-target="#addModal">add</button>
+                        <button className="btn btn-secondary" data-toggle="modal"
+                            data-target="#addModal"><i class="fas fa-plus"></i></button>
                     </div>
                     <div className="one column col-3">
-                        <button className="btn btn-outline-light" data-toggle="modal"
-                            data-target="#addModal2">add</button>
+                        <button className="btn btn-secondary" data-toggle="modal"
+                            data-target="#addModal2"><i class="fas fa-plus"></i></button>
                     </div>
                 </React.Fragment>
         );
@@ -202,15 +219,15 @@ const FootButtons = props =>{
             <React.Fragment>
                 <div className="one column col-3">
                     <button className="btn btn-outline-light" data-toggle="modal"
-                            data-target="#clearModal" disabled>clear all</button>
+                            data-target="#clearModal" disabled><i class="fas fa-minus"></i></button>
                 </div>
                 <div className="two column col-3 col-md-6">
-                    <button className="btn btn-outline-light" data-toggle="modal"
-                        data-target="#addModal" disabled>add</button>
+                    <button className="btn btn-secondary" data-toggle="modal"
+                        data-target="#addModal" disabled><i class="fas fa-plus"></i></button>
                 </div>
                 <div className="one column col-3">
-                    <button className="btn btn-outline-light" data-toggle="modal"
-                        data-target="#addModal2" disabled>add</button>
+                    <button className="btn btn-secondary" data-toggle="modal"
+                        data-target="#addModal2" disabled><i class="fas fa-plus"></i></button>
                 </div>
              </React.Fragment>
         );
