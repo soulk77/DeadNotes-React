@@ -22,6 +22,7 @@ class NavMenu extends Component {
                         <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                             <NavLink label="Home" to="/" location={this.props.location.pathname} />
                             <NavLink label="Groups" to="/groups" location={this.props.location.pathname} />
+                            <NavLink label="Logout" to='/logout' location={this.props.location.pathname} />
                         </ul>
                     </div>
                  );

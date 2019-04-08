@@ -10,7 +10,7 @@ class Home extends Component{
                 <Nav />
                 <div className="container">
                     <div className="row p-3 mt-5">
-                        <img src="/img/LogoMakr_2X1vQz.png" alt="DeadNotes" className="m-auto d-block logo home" />
+                        <img src="/img/LogoMakr_4n87LN.png" alt="DeadNotes" className="m-auto d-block logo home" />
                     </div>
                 </div>
             </div>  

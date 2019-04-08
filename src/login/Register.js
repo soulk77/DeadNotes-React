@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { UserContext } from '../UserContext';
 import Nav from '../Nav';
+import Logo from './Logo';
+import $ from 'jquery';
 
 
 class Register extends Component{
@@ -37,7 +39,7 @@ class Register extends Component{
         const pass = this.password.current.value;
         const pass2 = this.password2.current.value;
         const mail = this.email.current.value;
-        window.$.ajax({
+        $.ajax({
             url: 'http://localhost:8080/api/register',
             dataType: 'json',                       
             type: 'POST',         
@@ -70,6 +72,7 @@ class Register extends Component{
         return(
                 <React.Fragment>
                     <Nav />
+                    <Logo />
                     <div className="register">
                         <div className="container mt-0">
                             <div className="row justify-content-center ">

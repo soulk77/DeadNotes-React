@@ -3,6 +3,7 @@ import "./board.css";
 import MainTasks , {GroupUsersSelect , Buttons, GroupUsersLi}  from './MainTasks';
 import Foot from "./Foot";
 import Nav from '../Nav';
+import $ from 'jquery';
 
 class Board extends Component{
 
@@ -42,7 +43,7 @@ class Board extends Component{
     fetchTasks(status){
         let user = localStorage.getItem('username');
         let id = parseInt(localStorage.getItem('activeGroup'));
-        window.$.ajax({
+       $.ajax({
             url: 'http://localhost:8080/api/tasks',
             dataType: 'json',
             type: 'POST',
@@ -75,7 +76,7 @@ class Board extends Component{
     fetchGroupsUsers(){
         let user = localStorage.getItem('username');
         let id = parseInt(localStorage.getItem('activeGroup'));
-        window.$.ajax({
+        $.ajax({
             url: 'http://localhost:8080/api/group/users',
             dataType: 'json',                       
             type: 'POST',
@@ -94,7 +95,7 @@ class Board extends Component{
         let user = this.newUser.current.value;
         let id = parseInt(localStorage.getItem('activeGroup'));
         if (user) {
-            window.$.ajax({
+            $.ajax({
                 url: 'http://localhost:8080/api/group/addUser',
                 dataType: 'json',
                 type: 'POST',
@@ -114,7 +115,7 @@ class Board extends Component{
         let user = this.userToDismiss.current.value;
         let id = parseInt(localStorage.getItem('activeGroup'));
         if (user) {
-            window.$.ajax({
+            $.ajax({
                 url: 'http://localhost:8080/api/group/dismissUser',
                 dataType: 'json',
                 type: 'POST',
@@ -135,7 +136,7 @@ class Board extends Component{
         let user = localStorage.getItem('username');
         let id = parseInt(localStorage.getItem('activeGroup'));
         if (user) {
-            window.$.ajax({
+            $.ajax({
                 url: 'http://localhost:8080/api/group/dismissUser',
                 dataType: 'json',
                 type: 'POST',
@@ -182,7 +183,7 @@ class Board extends Component{
                                             </div>
                                             <div  className="container scrollerBee">
                                                 <div className="row  justify-content-center">
-                                                  <MainTasks list = {this.state.tasksExpired} creator = {this.state.creator} />
+                                                  <MainTasks list={this.state.tasksExpired} creator={this.state.creator} status={3} />
                                                 </div>
                                             </div>
 
@@ -193,7 +194,7 @@ class Board extends Component{
                                             </div>
                                             <div className="container scrollerBee mt-4">
                                                 <div className="row  justify-content-center">
-                                                    <MainTasks list = {this.state.tasksMain} creator = {this.state.creator} />
+                                                    <MainTasks list = {this.state.tasksMain} creator = {this.state.creator} status={1}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -203,7 +204,7 @@ class Board extends Component{
                                             </div>
                                             <div className="container scrollerBee">
                                                 <div className="row  justify-content-center">
-                                                    <MainTasks list = {this.state.tasksForEver} creator = {this.state.creator} />
+                                                    <MainTasks list = {this.state.tasksForEver} creator = {this.state.creator} status={2} />
                                                 </div>
                                             </div>
                                         </div>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import "./login.css";
 import { UserContext } from '../UserContext';
 import Nav from '../Nav';
+import Logo from './Logo';
+import $ from 'jquery';
 
 
 class Login extends Component{
@@ -20,7 +22,7 @@ class Login extends Component{
         const username = this.username.current.value;
         const password = this.password.current.value;
 
-        window.$.ajax({
+        $.ajax({
             url: 'http://localhost:8080/api/login',
             dataType: 'json',
             type: 'POST',
@@ -49,6 +51,7 @@ class Login extends Component{
         return(
                 <React.Fragment>
                     <Nav />
+                    <Logo />
                     <div className ="login">
                         <section id="mid">
                             <div className="container my-0">

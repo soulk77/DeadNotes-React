@@ -1,11 +1,8 @@
-.completed{
-    border: 2px solid green;
-}
-.theFoot{
+.theFoot {
     background-color: transparent;
 }
 
-.board{
+.board {
     background-image: url('/img/board.png');
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -20,7 +17,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
 
 /* ---------------------------------------------------
     SIDEBAR STYLE
@@ -215,7 +212,19 @@ a.article:hover {
     color: #000;
 }
 
-.two .bubble2{
+.completed {
+    border: 2px solid #c5fad9;
+}
+
+.dead {
+    border: 2px solid #df0054;
+}
+
+.still-alive {
+    border: 2px solid #f8a978;
+}
+
+.two .bubble2 {
     margin-left: 20px;
 }
 
@@ -260,7 +269,7 @@ a.article:hover {
 
 a {
     outline: 0;
- }
+}
 
 button:focus {
     outline: 0 !important;
@@ -278,28 +287,35 @@ button:focus {
     color: #fff;
 }
 
+.bubble2:hover .txt_user {
+    word-break: break-all !important;
+    color: #000;
+}
+
 .txt_tittle {
     word-break: break-all !important;
+    color: #000;
     font-size: 18px;
 }
 
 
-#clock_div{
+#clock_div {
     position: fixed;
     left: 0;
     bottom: 0;
 }
 
 /******* Chat BOX ***************/
-.btn-chat{
+.btn-chat {
     position: fixed;
     right: 4%;
     bottom: 1%;
 }
-.btn-bar{
+
+.btn-bar {
     position: fixed;
     left: 4%;
-    bottom: 1%; 
+    bottom: 1%;
 }
 
 .foot>textarea {
@@ -368,7 +384,8 @@ button:focus {
     background-color: #239d60;
     margin-top: 2%;
 }
-.msg-headers{
+
+.msg-headers {
     opacity: 0.4;
     font-size: 0.6em;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ModalButtons from "./ModalButtons";
+import MainModal from './MainModal';
 
 
 class MainTasks extends Component{
@@ -7,40 +8,66 @@ class MainTasks extends Component{
     constructor(props){
         super(props);
         this.state ={
-            currentTask: {}
+            currentTask: {},
+            modalVisible: false
         }
-        this.handleTask = this.handleTask.bind(this);
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
     }
-
     
-
-    handleTask(k){
-        console.log(k)
+    showModal(task) {
         this.setState({
-            currentTask: k
-        });
+            currentTask: task,
+            modalVisible: true});
     }
-
-
+    
+    hideModal(userChoice) {
+        this.setState({modalVisible:false});
+    }
+    
 
     render(){
         const tasks = this.props.list;
+        let activeUser = localStorage.getItem('username');
+        let creator = this.props.creator;
+        let status = this.props.status;
         return(
             <React.Fragment>
                 <div className="row  justify-content-center">
                     {Object.keys(tasks).map( k =>{
-                        return(
-                            <button className="bubble2 mr-1 my-3" key = {k} data-toggle="modal" data-target="#task-modal"
-                             onClick={()=>this.setState({
-                                currentTask: tasks[k]
-                             })} >
-                                <p class="txt_tittle mb-1">{tasks[k].taskTitle}</p>
-                                <p class="txt_user font-italic mb-0 mt-2">{tasks[k].username}</p>
-                            </button>
-                        )
+                        if(status === 1 || status === 2 ){
+                                return(
+                                    <button className="bubble2 mr-1 my-3 still-alive" key = {k} 
+                                    onClick={()=>{this.showModal(tasks[k])}} >
+                                        <p className="txt_tittle mb-1">{tasks[k].taskTitle}</p>
+                                        <p className="txt_user font-italic mb-0 mt-2">{tasks[k].assignedUser.username}</p>
+                                    </button>
+                                );
+                        }else if(status === 3){
+                            return(
+                                <button className="bubble2 mr-1 my-3 dead" key = {k} data-toggle="modal" data-target="#task-modal"
+                                onClick={()=>this.setState({
+                                    currentTask: tasks[k]
+                                })} >
+                                    <p className="txt_tittle mb-1">{tasks[k].taskTitle}</p>
+                                    <p className="txt_user font-italic mb-0 mt-2">{tasks[k].assignedUser.username}</p>
+                                </button>
+                            );
+                        }else{
+                            return(
+                                <button className="bubble2 mr-1 my-3 completed" key = {k} data-toggle="modal" data-target="#task-modal"
+                                onClick={()=>this.setState({
+                                    currentTask: tasks[k]
+                                })} >
+                                    <p className="txt_tittle mb-1">{tasks[k].taskTitle}</p>
+                                    <p className="txt_user font-italic mb-0 mt-2">{tasks[k].assignedUser.username}</p>
+                                </button>
+                            );
+                        }
                     })}
                 </div> 
-                <Modal2  task = {this.state.currentTask} creator = {this.props.creator} />
+                <MainModal visible={this.state.modalVisible} onHide={this.hideModal} 
+                            task = {this.state.currentTask} creator = {this.props.creator}/>
             </React.Fragment>  
         )
     }
@@ -115,46 +142,49 @@ export const Buttons = props => {
 
 }
 
-export const Modal2 = props =>{
-    const task = props.task;   
-        return(
-            <React.Fragment>
-                {Object.keys(task).map(k =>{
-                    return( 
-                            <div className="modal fade" id="task-modal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" 
-                                    key = {k}>
-                                <div className="modal-dialog" role="document">
-                                    <div className="modal-content">
-                                        <div className="modal-header">
-                                        <h5 className="modal-title" id="exampleModalLabel">{task.taskTitle}</h5>
-                                        <h5 className="modal-title ml-auto" id="exampleModalLabel">{task.deadline}</h5>
-                                        <button type="button" className="close ml-3" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        </div>
-                                        <div className="modal-body">
-                                        <div className="container mt-0">
-                                            <div className="row">
-                                                {/* {task.assignedUser.username} */}
-                                            </div>
-                                            <div className="row mt-3 text-break">
-                                                {task.task}
-                                                {/* {task.task.valeuOf()} */}
-                                            </div>
-                                        </div>
-                                        </div>
-                                        <div className="modal-footer">
-                                        <ModalButtons creator = {props.creator} />
-                                        {/* <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" className="btn btn-danger" data-dismiss="modal">Delete</button>
-                                        <button type="button" className="btn btn-success" data-dismiss="modal">Completed</button> */}
-                                        </div>
-                                    </div>
-                                </div>
-                             </div>
-                          );
-                  })}
-        </React.Fragment>
-        );
-    // }
-}  
+// export const Modal2 = props =>{
+//     let task = props.task;   
+//     // let user = task.assignedUser.username;
+//     // console.log(user);
+//     // const assignedUser = props.task.assignedUser.username;
+//         return(
+//             <React.Fragment>
+//                 {Object.keys(task).map(k =>{
+//                     return( 
+//                             <div className="modal fade" id="task-modal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" 
+//                                     key = {k}>
+//                                 <div className="modal-dialog" role="document">
+//                                     <div className="modal-content">
+//                                         <div className="modal-header">
+//                                         <h5 className="modal-title" id="exampleModalLabel">{task.taskTitle}</h5>
+//                                         <h5 className="modal-title ml-auto" id="exampleModalLabel">{task.deadline}</h5>
+//                                         <button type="button" className="close ml-3" data-dismiss="modal" aria-label="Close">
+//                                             <span aria-hidden="true">&times;</span>
+//                                         </button>
+//                                         </div>
+//                                         <div className="modal-body">
+//                                         <div className="container mt-0">
+//                                             <div className="row">
+//                                                 {task.assignedUser.username}
+//                                             </div>
+//                                             <div className="row mt-3 text-break">
+//                                                 {task.task}
+//                                                 {/* {task.task.valeuOf()} */}
+//                                             </div>
+//                                         </div>
+//                                         </div>
+//                                         <div className="modal-footer">
+//                                         <ModalButtons creator = {props.creator} assignedUser = {props.assignedUser} />
+//                                         {/* <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+//                                         <button type="button" className="btn btn-danger" data-dismiss="modal">Delete</button>
+//                                         <button type="button" className="btn btn-success" data-dismiss="modal">Completed</button> */}
+//                                         </div>
+//                                     </div>
+//                                 </div>
+//                              </div>
+//                           );
+//                   })}
+//         </React.Fragment>
+//         );
+//     // }
+// }  

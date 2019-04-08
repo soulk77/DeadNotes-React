@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {GroupUsersSelect , Buttons, GroupUsersLi}  from "./MainTasks";
+import $ from 'jquery';
 
 class Foot extends Component{
 
@@ -24,7 +25,7 @@ class Foot extends Component{
         let user = this.user.current.value;
         let deadline = this.deadline.current.value;
         if (taskTitle.trim() !== '' && task.trim() !== '' && deadline.trim() !== '') {
-            window.$.ajax({
+            $.ajax({
                 url: 'http://localhost:8080/api/tasks/assign',
                 dataType: 'json',
                 type: 'POST',
@@ -49,7 +50,7 @@ class Foot extends Component{
         let task2 = this.task2.current.value;
         let user2 = this.user2.current.value;
         if (taskTitle2.trim() !== '' && task2.trim() !== '') {
-            window.$.ajax({
+            $.ajax({
                 url: 'http://localhost:8080/api/tasks/assign',
                 dataType: 'json',
                 type: 'POST',
@@ -70,7 +71,7 @@ class Foot extends Component{
 
     clearTasks(){
         let id = localStorage.getItem('activeGroup');
-        window.$.ajax({
+        $.ajax({
             url: 'http://localhost:8080/api/tasks/assign',
             dataType: 'json',
             type: 'POST',
@@ -219,15 +220,15 @@ const FootButtons = props =>{
             <React.Fragment>
                 <div className="one column col-3">
                     <button className="btn btn-outline-light" data-toggle="modal"
-                            data-target="#clearModal" disabled><i class="fas fa-minus"></i></button>
+                            data-target="#clearModal" disabled><i className="fas fa-minus"></i></button>
                 </div>
                 <div className="two column col-3 col-md-6">
                     <button className="btn btn-secondary" data-toggle="modal"
-                        data-target="#addModal" disabled><i class="fas fa-plus"></i></button>
+                        data-target="#addModal" disabled><i className="fas fa-plus"></i></button>
                 </div>
                 <div className="one column col-3">
                     <button className="btn btn-secondary" data-toggle="modal"
-                        data-target="#addModal2" disabled><i class="fas fa-plus"></i></button>
+                        data-target="#addModal2" disabled><i className="fas fa-plus"></i></button>
                 </div>
              </React.Fragment>
         );

@@ -3,10 +3,11 @@ import { HashRouter as Router, Route,Redirect } from "react-router-dom";
 import Login from './login/Login';
 import Register from './login/Register';
 import Home from './home/Home';
-import Logo from './Logo';
+import Logo from './login/Logo';
 import Groups from './groups/Groups';
 import Board from "./board/Board";
 import { UserProvider } from './UserContext';
+import Logout from './login/Logout';
 
 
 class App extends Component {
@@ -41,11 +42,12 @@ class App extends Component {
         {/* <Nav /> */}
         <Route path = "/" exact component = {Home} />
         {/* <Route path = "/Home"  component = {Home} /> */}
-        <Route path = {['/login', '/register']} component = {Logo} />
+        {/* <Route path = {['/login', '/register']} component = {Logo} /> */}
         <Route path = "/login"  component = {Login} />
         <Route path = "/register" component = {Register} />
         <Route path = '/groups' render={this.renderProtectedComponent(Groups)} />
         <Route path = "/board"  component = {Board} />
+        <Route path = "/logout" render={this.renderProtectedComponent(Logout)} />  
       </Router>
       </UserProvider>
     );

@@ -10,8 +10,12 @@ class ModalButtons extends Component {
     render(){
         let creator = this.props.creator;
         let user = localStorage.getItem('username');
+        let assignedUser = this.props.assignedUser;
+        console.log(user);
+        console.log(assignedUser);
 
-        if(creator === user ){
+
+        if(user === creator ){
             return(
                 <React.Fragment>
                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -19,13 +23,17 @@ class ModalButtons extends Component {
                     <button type="button" className="btn btn-success" data-dismiss="modal">Completed</button>
                 </React.Fragment>
               );
-        }else{
+        }else if(user === assignedUser){
             return(
                 <React.Fragment>
                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" className="btn btn-success" data-dismiss="modal">Completed</button>
                 </React.Fragment>
               );
+        }else{
+            return(
+                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button> 
+            );
         }
     }
     

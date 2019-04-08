@@ -5,10 +5,7 @@ import { UserContext } from '../UserContext';
 import Bubbles from './Bubbles';
 import Delete from './Delete';
 import Nav from '../Nav';
-// import $ from 'jquery'; 
-// import FlipClock from './flipclock';
-// import Clock from "react-flip-clock-en"; 
-
+import $ from 'jquery';
 
 class Groups extends Component {
 
@@ -45,7 +42,7 @@ class Groups extends Component {
 
     fetchAllGroups(){
         const user = localStorage.getItem('username');
-        window.$.ajax({
+        $.ajax({
             url: 'http://localhost:8080/api/groups',
             dataType: 'json',                       
             type: 'POST',
@@ -61,7 +58,7 @@ class Groups extends Component {
 
     fetchCreatedGroupds(){
         const user = localStorage.getItem('username');
-        window.$.ajax({
+        $.ajax({
             url: 'http://localhost:8080/api/groupsCreated',
             dataType: 'json',
             type: 'POST',
@@ -97,7 +94,7 @@ class Groups extends Component {
         const name = this.groupName.current.value;
         const user = localStorage.getItem('username');
 
-        window.$.ajax({
+        $.ajax({
             url: 'http://localhost:8080/api/group/save',
             dataType: 'json',
             type: 'POST',

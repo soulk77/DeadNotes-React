@@ -7,7 +7,8 @@ class MainTasks extends Component{
     constructor(props){
         super(props);
         this.state ={
-            currentTask: {}
+            currentTask: {},
+    
         }
         this.handleTask = this.handleTask.bind(this);
     }
