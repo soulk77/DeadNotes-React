@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {GroupUsersSelect , Buttons, GroupUsersLi}  from "./MainTasks";
+import {GroupUsersSelect }  from "./MainTasks";
 import $ from 'jquery';
 
 class Foot extends Component{
@@ -203,15 +203,15 @@ const FootButtons = props =>{
                 <React.Fragment>
                     <div className="one column col-3">
                         <button className="btn btn-outline-light" data-toggle="modal"
-                                data-target="#clearModal"><i class="fas fa-minus"></i></button>
+                                data-target="#clearModal"><i className="fas fa-minus"></i></button>
                     </div>
                     <div className="two column col-3 col-md-6">
                         <button className="btn btn-secondary" data-toggle="modal"
-                            data-target="#addModal"><i class="fas fa-plus"></i></button>
+                            data-target="#addModal"><i className="fas fa-plus"></i></button>
                     </div>
                     <div className="one column col-3">
                         <button className="btn btn-secondary" data-toggle="modal"
-                            data-target="#addModal2"><i class="fas fa-plus"></i></button>
+                            data-target="#addModal2"><i className="fas fa-plus"></i></button>
                     </div>
                 </React.Fragment>
         );

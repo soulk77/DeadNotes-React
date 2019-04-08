@@ -29,13 +29,15 @@ class Board extends Component{
         this.fetchTasks(1);
         this.fetchTasks(2);
         this.fetchTasks(3);
+        this.fetchTasks(4);
         this.fetchGroupsUsers();
     }
 
     componentDidMount(){
-        this.fetchTasks(1);
-        this.fetchTasks(2);
-        this.fetchTasks(3);
+        this.fetchTasks(1);//with  deadline
+        this.fetchTasks(2);//without deadline
+        this.fetchTasks(3);//expired
+        this.fetchTasks(4);//completed
         this.fetchGroupsUsers();
     }
     
@@ -65,7 +67,7 @@ class Board extends Component{
                 this.setState({
                     tasksExpired: data
                 });
-            } else {
+            } else if(status === 4) {
                 this.setState({
                     tasksCompleted: data
                 });
@@ -183,7 +185,11 @@ class Board extends Component{
                                             </div>
                                             <div  className="container scrollerBee">
                                                 <div className="row  justify-content-center">
-                                                  <MainTasks list={this.state.tasksExpired} creator={this.state.creator} status={3} />
+                                                  <MainTasks list={this.state.tasksExpired} creator={this.state.creator} status={3} 
+                                                             handler = {this.handler}/>
+                                                  <MainTasks list={this.state.tasksCompleted} creator={this.state.creator} status={4} 
+                                                             handler = {this.handler}/>
+
                                                 </div>
                                             </div>
 
@@ -194,7 +200,8 @@ class Board extends Component{
                                             </div>
                                             <div className="container scrollerBee mt-4">
                                                 <div className="row  justify-content-center">
-                                                    <MainTasks list = {this.state.tasksMain} creator = {this.state.creator} status={1}/>
+                                                    <MainTasks list = {this.state.tasksMain} creator = {this.state.creator} status={1}
+                                                                handler = {this.handler}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -204,7 +211,8 @@ class Board extends Component{
                                             </div>
                                             <div className="container scrollerBee">
                                                 <div className="row  justify-content-center">
-                                                    <MainTasks list = {this.state.tasksForEver} creator = {this.state.creator} status={2} />
+                                                    <MainTasks list = {this.state.tasksForEver} creator = {this.state.creator} 
+                                                    status={2} handler = {this.handler}  />
                                                 </div>
                                             </div>
                                         </div>

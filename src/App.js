@@ -3,7 +3,6 @@ import { HashRouter as Router, Route,Redirect } from "react-router-dom";
 import Login from './login/Login';
 import Register from './login/Register';
 import Home from './home/Home';
-import Logo from './login/Logo';
 import Groups from './groups/Groups';
 import Board from "./board/Board";
 import { UserProvider } from './UserContext';

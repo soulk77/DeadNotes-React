@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ModalButtons from "./ModalButtons";
+// import ModalButtons from "./ModalButtons";
 import MainModal from './MainModal';
 
 
@@ -21,15 +21,13 @@ class MainTasks extends Component{
             modalVisible: true});
     }
     
-    hideModal(userChoice) {
+    hideModal() {
         this.setState({modalVisible:false});
     }
     
 
     render(){
         const tasks = this.props.list;
-        let activeUser = localStorage.getItem('username');
-        let creator = this.props.creator;
         let status = this.props.status;
         return(
             <React.Fragment>
@@ -46,27 +44,25 @@ class MainTasks extends Component{
                         }else if(status === 3){
                             return(
                                 <button className="bubble2 mr-1 my-3 dead" key = {k} data-toggle="modal" data-target="#task-modal"
-                                onClick={()=>this.setState({
-                                    currentTask: tasks[k]
-                                })} >
+                                onClick={()=>{this.showModal(tasks[k])}} >
+                                    <p className="txt_tittle mb-1">{tasks[k].taskTitle}</p>
+                                    <p className="txt_user font-italic mb-0 mt-2">{tasks[k].assignedUser.username}</p>
+                                </button>
+                            );
+                        }else if(status === 4){
+                            return(
+                                <button className="bubble2 mr-1 my-3 completed" key = {k} data-toggle="modal" data-target="#task-modal"
+                                onClick={()=>{this.showModal(tasks[k])}} >
                                     <p className="txt_tittle mb-1">{tasks[k].taskTitle}</p>
                                     <p className="txt_user font-italic mb-0 mt-2">{tasks[k].assignedUser.username}</p>
                                 </button>
                             );
                         }else{
-                            return(
-                                <button className="bubble2 mr-1 my-3 completed" key = {k} data-toggle="modal" data-target="#task-modal"
-                                onClick={()=>this.setState({
-                                    currentTask: tasks[k]
-                                })} >
-                                    <p className="txt_tittle mb-1">{tasks[k].taskTitle}</p>
-                                    <p className="txt_user font-italic mb-0 mt-2">{tasks[k].assignedUser.username}</p>
-                                </button>
-                            );
+                            return null;
                         }
                     })}
                 </div> 
-                <MainModal visible={this.state.modalVisible} onHide={this.hideModal} 
+                <MainModal visible={this.state.modalVisible} onHide={this.hideModal} handler={this.props.handler}
                             task = {this.state.currentTask} creator = {this.props.creator}/>
             </React.Fragment>  
         )
