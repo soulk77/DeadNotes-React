@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import "./board.css";
+import './board.css';
 import MainTasks , {GroupUsersSelect , Buttons, GroupUsersLi}  from './MainTasks';
-import Foot from "./Foot";
+import Foot from './Foot';
 import Nav from '../Nav';
 import $ from 'jquery';
+import ChatBox from './chatBox/ChatBox';
 
 class Board extends Component{
 
@@ -93,6 +94,7 @@ class Board extends Component{
            });
        });
     }
+    
     addUserToGroup() {
         let user = this.newUser.current.value;
         let id = parseInt(localStorage.getItem('activeGroup'));
@@ -222,11 +224,6 @@ class Board extends Component{
                         </section>
                             <div className="container outC mt-3 theFoot">
                                 <div className="row outR">
-                                    {/* <div id="clock_div">
-                                        <div className="flex-container">
-                                            <canvas id="clock" width="90" height="90"></canvas>
-                                        </div>
-                                    </div> */}
                                     <Foot list={this.state.groupsUsers} handler = {this.handler}  creator = {this.state.creator} />
                                     <div>
                                         <button type="button" id="sidebarCollapse" className="btn btn-outline-light btn-bar" onClick={this.collapse1}>
@@ -239,6 +236,7 @@ class Board extends Component{
                                 </div>
                             </div>
                         <section>
+                        <ChatBox collapse2={this.collapse2} />
                          <div className="modal fade" id="LeaveModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
                                 <div className="modal-dialog" role="document">
@@ -318,7 +316,7 @@ class Board extends Component{
                         </section>
                     </div>
                 </div>
-                <div className="chat-box">
+                {/* <div className="chat-box">
                     <div className="">
                         <nav id="sidebar2">
                             <div className="head2">
@@ -339,17 +337,19 @@ class Board extends Component{
                             </div>
                         </nav>
                     </div>
-                </div>
+                </div> */}
             </div>
         );
     }
-     collapse1(e){
+     collapse1(){
         let collapse = document.getElementById('sidebar');
         collapse.classList.toggle('active');
      }   
-     collapse2(e){
+     collapse2(){
         let collapse = document.getElementById('sidebar2');
         collapse.classList.toggle('active');
+        let objDiv = document.querySelector('.scroller');
+        objDiv.scrollTop = objDiv.scrollHeight;
      }
 }
 

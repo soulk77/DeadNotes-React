@@ -362,12 +362,15 @@ button:focus {
 }
 
 .msg_send {
-    position: right;
-    right: 0;
-    margin-top: 2%;
+    /* float: right; */
+    margin-left: auto !important;
+    right: 0 !important;
+    /* margin-left: initial !important; */
+    /* margin-top: 2%; */
     overflow-wrap: break-word;
     max-width: 50%;
-    justify-self: flex-end !important;
+    /* position: inline-block; */
+    /* justify-self: flex-end !important; */
 }
 
 .chat-box p {
@@ -444,7 +447,7 @@ button:focus {
 ----------------------------------------------------- */
 
 .chat-box .scroller {
-    height: 400px;
+    height: 420px;
     max-width: 500px !important;
     overflow-y: scroll;
     scrollbar-color: transparent transparent;
@@ -454,6 +457,5 @@ button:focus {
 
 .chat-box .scroller:hover {
     overflow-y: scroll;
-    border-radius: 15px;
     scrollbar-color: rgba(160, 160, 160, 0.26) transparent;
 }

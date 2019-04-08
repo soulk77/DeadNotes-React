@@ -27,7 +27,7 @@ class MainTasks extends Component{
     
 
     render(){
-        const tasks = this.props.list;
+        let tasks = this.props.list;
         let status = this.props.status;
         return(
             <React.Fragment>
