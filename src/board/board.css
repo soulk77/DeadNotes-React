@@ -352,6 +352,7 @@ button:focus {
 .msg_body {
     height: 80%;
     overflow-y: scroll;
+    opacity: 0.7;
 }
 
 .msg {

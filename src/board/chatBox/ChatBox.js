@@ -23,7 +23,7 @@ class ChatBox extends Component{
     }
 
     handleKeyPress(e){        
-        if(e.key == 'Enter'){
+        if(e.key === 'Enter'){
             e.preventDefault();
             let textarea = document.querySelector('#textarea');
             let message = textarea.value;

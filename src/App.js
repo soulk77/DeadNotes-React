@@ -7,6 +7,7 @@ import Groups from './groups/Groups';
 import Board from "./board/Board";
 import { UserProvider } from './UserContext';
 import Logout from './login/Logout';
+import Profile from './login/Profile';
 
 
 class App extends Component {
@@ -38,15 +39,13 @@ class App extends Component {
     return (
       <UserProvider value={this.state}>
       <Router>
-        {/* <Nav /> */}
         <Route path = "/" exact component = {Home} />
-        {/* <Route path = "/Home"  component = {Home} /> */}
-        {/* <Route path = {['/login', '/register']} component = {Logo} /> */}
         <Route path = "/login"  component = {Login} />
         <Route path = "/register" component = {Register} />
         <Route path = '/groups' render={this.renderProtectedComponent(Groups)} />
         <Route path = "/board"  component = {Board} />
         <Route path = "/logout" render={this.renderProtectedComponent(Logout)} />  
+        <Route path = "/profile" render={this.renderProtectedComponent(Profile)} />  
       </Router>
       </UserProvider>
     );
