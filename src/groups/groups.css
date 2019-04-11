@@ -110,10 +110,17 @@ html {
 }
 
 .scrollerG::-webkit-scrollbar-track-piece {
-    background-color: #C2D2E4;
+    height: 400px;
+    max-width: 500px !important;
+    overflow-y: scroll;
+    scrollbar-color: transparent transparent;
+    scrollbar-width: thin;
 }
 
 .scrollerG::-webkit-scrollbar-thumb:vertical {
-    height: 30px;
-    background-color: #0A4C95;
+    height: 400px;
+    max-width: 500px !important;
+    overflow-y: scroll;
+    scrollbar-color: transparent transparent;
+    scrollbar-width: thin;
 }

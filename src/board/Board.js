@@ -168,7 +168,7 @@ class Board extends Component{
                             <i className="fas fa-arrow-left"></i>
                         </button>
                         <div className="sidebar-header">
-                            <h3>{groupName}</h3>
+                            <h3 className="w-75">{groupName}</h3>
                         </div>
                         <ul className="components ml-2">
                             <p><u className="font-weight-bold">Group Users</u></p>

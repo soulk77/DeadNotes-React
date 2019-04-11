@@ -199,15 +199,31 @@ ul.CTAs {
     overflow-y: scroll;
     border-radius: 15px;
     scrollbar-color: rgba(160, 160, 160, 0.26) transparent;
+    
 }
 
+.scrollerBee::-webkit-scrollbar{
+    width: 15px;
+    height: 15px;
+}
+
+
 .scrollerBee::-webkit-scrollbar-track-piece {
-    background-color: #C2D2E4;
+    height: 600px !important;
+    max-width: 800px !important;
+    overflow-y: scroll;
+    overflow-x: initial;
+    scrollbar-color: transparent transparent;
+    scrollbar-width: thin;
 }
 
 .scrollerBee::-webkit-scrollbar-thumb:vertical {
-    height: 30px;
-    background-color: #0A4C95;
+    height: 600px !important;
+    max-width: 800px !important;
+    overflow-y: scroll;
+    overflow-x: initial;
+    scrollbar-color: transparent transparent;
+    scrollbar-width: thin;
 }
 
 
@@ -406,4 +422,12 @@ button:focus {
 .chat-box .scroller:hover {
     overflow-y: scroll;
     scrollbar-color: rgba(160, 160, 160, 0.26) transparent;
+}
+
+.chat-box .scroller::-webkit-scrollbar-thumb:vertical{
+    height: 420px;
+    max-width: 500px !important;
+    overflow-y: scroll;
+    scrollbar-color: transparent transparent;
+    scrollbar-width: thin;
 }

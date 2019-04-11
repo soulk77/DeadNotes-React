@@ -90,6 +90,7 @@ class Groups extends Component {
             }
         }).done((data)=>{
             this.fetchAllGroups();
+            this.fetchCreatedGroupds();
         }).catch((e)=>{
             console.log('not ok');
         })

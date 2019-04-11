@@ -9,15 +9,17 @@ class MainTasks extends Component{
         super(props);
         this.state ={
             currentTask: {},
+            currentStatus: {},
             modalVisible: false
         }
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
     }
     
-    showModal(task) {
+    showModal(task,status) {
         this.setState({
             currentTask: task,
+            currentStatus: status,
             modalVisible: true});
     }
     
@@ -36,7 +38,7 @@ class MainTasks extends Component{
                         if(status === 1 || status === 2 ){
                                 return(
                                     <button className="bubble2 mr-1 my-3 still-alive" key = {k} 
-                                    onClick={()=>{this.showModal(tasks[k])}} >
+                                    onClick={()=>{this.showModal(tasks[k],status)}} >
                                         <p className="txt_tittle mb-1">{tasks[k].taskTitle}</p>
                                         <p className="txt_user font-italic mb-0 mt-2">{tasks[k].assignedUser.username}</p>
                                     </button>
@@ -44,7 +46,7 @@ class MainTasks extends Component{
                         }else if(status === 3){
                             return(
                                 <button className="bubble2 mr-1 my-3 dead" key = {k} data-toggle="modal" data-target="#task-modal"
-                                onClick={()=>{this.showModal(tasks[k])}} >
+                                onClick={()=>{this.showModal(tasks[k],status)}} >
                                     <p className="txt_tittle mb-1">{tasks[k].taskTitle}</p>
                                     <p className="txt_user font-italic mb-0 mt-2">{tasks[k].assignedUser.username}</p>
                                 </button>
@@ -52,7 +54,7 @@ class MainTasks extends Component{
                         }else if(status === 4){
                             return(
                                 <button className="bubble2 mr-1 my-3 completed" key = {k} data-toggle="modal" data-target="#task-modal"
-                                onClick={()=>{this.showModal(tasks[k])}} >
+                                onClick={()=>{this.showModal(tasks[k],status)}} >
                                     <p className="txt_tittle mb-1">{tasks[k].taskTitle}</p>
                                     <p className="txt_user font-italic mb-0 mt-2">{tasks[k].assignedUser.username}</p>
                                 </button>
@@ -63,7 +65,7 @@ class MainTasks extends Component{
                     })}
                 </div> 
                 <MainModal visible={this.state.modalVisible} onHide={this.hideModal} handler={this.props.handler}
-                            task = {this.state.currentTask} creator = {this.props.creator}/>
+                            task = {this.state.currentTask} creator = {this.props.creator} status={this.state.currentStatus} />
             </React.Fragment>  
         )
     }
