@@ -72,14 +72,23 @@ export default MainTasks;
  
 export const GroupUsersLi = props =>{
     let users = props.list;
+    let creator = props.creator;
     return(
-        <div>
-            {Object.keys(users).map(k =>{
+        <React.Fragment>
+            {Object.keys(users).map(k =>{    
+                if(users[k].username === creator){
+                    return(
+                        <li className='ml-3' key={k}>{users[k].username} <span className="font-italic">(Admin)</span> </li>
+                    );
+                }else{           
                 return (
-                    <li className="ml-3" key={k}>{users[k].username}</li>
+                    <React.Fragment key={k}>
+                       <li className="ml-3" >{users[k].username}</li>
+                    </React.Fragment>
                 );
+                }
             })}
-        </div>
+        </React.Fragment>
     );
 }
 
@@ -137,50 +146,3 @@ export const Buttons = props => {
     }
 
 }
-
-// export const Modal2 = props =>{
-//     let task = props.task;   
-//     // let user = task.assignedUser.username;
-//     // console.log(user);
-//     // const assignedUser = props.task.assignedUser.username;
-//         return(
-//             <React.Fragment>
-//                 {Object.keys(task).map(k =>{
-//                     return( 
-//                             <div className="modal fade" id="task-modal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" 
-//                                     key = {k}>
-//                                 <div className="modal-dialog" role="document">
-//                                     <div className="modal-content">
-//                                         <div className="modal-header">
-//                                         <h5 className="modal-title" id="exampleModalLabel">{task.taskTitle}</h5>
-//                                         <h5 className="modal-title ml-auto" id="exampleModalLabel">{task.deadline}</h5>
-//                                         <button type="button" className="close ml-3" data-dismiss="modal" aria-label="Close">
-//                                             <span aria-hidden="true">&times;</span>
-//                                         </button>
-//                                         </div>
-//                                         <div className="modal-body">
-//                                         <div className="container mt-0">
-//                                             <div className="row">
-//                                                 {task.assignedUser.username}
-//                                             </div>
-//                                             <div className="row mt-3 text-break">
-//                                                 {task.task}
-//                                                 {/* {task.task.valeuOf()} */}
-//                                             </div>
-//                                         </div>
-//                                         </div>
-//                                         <div className="modal-footer">
-//                                         <ModalButtons creator = {props.creator} assignedUser = {props.assignedUser} />
-//                                         {/* <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-//                                         <button type="button" className="btn btn-danger" data-dismiss="modal">Delete</button>
-//                                         <button type="button" className="btn btn-success" data-dismiss="modal">Completed</button> */}
-//                                         </div>
-//                                     </div>
-//                                 </div>
-//                              </div>
-//                           );
-//                   })}
-//         </React.Fragment>
-//         );
-//     // }
-// }  

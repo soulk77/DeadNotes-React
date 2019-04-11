@@ -103,10 +103,6 @@ class Profile extends Component{
         }).catch((e)=>{
             console.log('something went wrong at setEmail')
         }); 
-
-
-
-
     }
 
     setPassword(){
@@ -164,7 +160,8 @@ class Profile extends Component{
                                         <h2 className="mb-0">
                                             <div className="row">
                                                 <div className="col-8">
-                                                    <p className="mr-3 h6 d-inline">Username: {user.username}</p>
+                                                    <p className="mr-3 h6 d-inline">Username: <span className="font-italic ml-2">
+                                                                {user.username}</span></p>
                                                 </div>
                                                 <div className="col">
                                                     <button className="btn btn-outline-dark btn-sm" type="button " data-toggle="collapse"
@@ -209,7 +206,8 @@ class Profile extends Component{
                                         <h2 className="mb-0">
                                             <div className="row">
                                                 <div className="col-8">
-                                                    <p className="mr-3 h6 d-inline">Email: {user.email}</p>
+                                                    <p className="mr-3 h6 d-inline">Email: <span className="font-italic ml-2">
+                                                     {user.email}</span></p>
                                                 </div>
                                                 <div className="col">
                                                     <button className="btn btn-outline-dark btn-sm" type="button " data-toggle="collapse"

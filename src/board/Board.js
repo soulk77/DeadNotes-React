@@ -27,19 +27,19 @@ class Board extends Component{
     }
 
     handler(){
+        this.fetchGroupsUsers();
         this.fetchTasks(1);
         this.fetchTasks(2);
         this.fetchTasks(3);
         this.fetchTasks(4);
-        this.fetchGroupsUsers();
     }
 
     componentDidMount(){
+        this.fetchGroupsUsers();
         this.fetchTasks(1);//with  deadline
         this.fetchTasks(2);//without deadline
         this.fetchTasks(3);//expired
         this.fetchTasks(4);//completed
-        this.fetchGroupsUsers();
     }
     
     
@@ -150,13 +150,15 @@ class Board extends Component{
                 }
             }).done(data => {
                 console.log(data);
-                localStorage.removeItem("activeGroup");
+                localStorage.removeItem('activeGroup');
+                localStorage.removeItem('groupName');
                 this.props.history.push('/board');
             });
         }
     }
 
     render(){
+        let groupName = localStorage.getItem('groupName');
         return(
             <div className = "board">
                 <Nav />
@@ -166,11 +168,11 @@ class Board extends Component{
                             <i className="fas fa-arrow-left"></i>
                         </button>
                         <div className="sidebar-header">
-                            <h3>Sidebar</h3>
+                            <h3>{groupName}</h3>
                         </div>
                         <ul className="components ml-2">
-                            <p>Group Users</p>
-                            <GroupUsersLi list = {this.state.groupsUsers} />
+                            <p><u className="font-weight-bold">Group Users</u></p>
+                            <GroupUsersLi list = {this.state.groupsUsers} creator = {this.state.creator} />
                         </ul>
                         <ul className="list-unstyled CTAs">
                             <Buttons creator = {this.state.creator}  addUserToGroup = {this.addUserToGroup} />
@@ -183,12 +185,13 @@ class Board extends Component{
                                     <div className="row outR">
                                         <div className="one column col-3 p-0">
                                             <div className="headBee">
-                                                <h4>deadlines</h4>
+                                                <h4>Dead</h4>
                                             </div>
                                             <div  className="container scrollerBee">
                                                 <div className="row  justify-content-center">
                                                   <MainTasks list={this.state.tasksExpired} creator={this.state.creator} status={3} 
                                                              handler = {this.handler}/>
+                                                             <br/>
                                                   <MainTasks list={this.state.tasksCompleted} creator={this.state.creator} status={4} 
                                                              handler = {this.handler}/>
 
@@ -209,7 +212,7 @@ class Board extends Component{
                                         </div>
                                         <div className="one column col-3 p-0">
                                             <div className="headBee">
-                                                <h4>for ever</h4>
+                                                <h4>Perpetual</h4>
                                             </div>
                                             <div className="container scrollerBee">
                                                 <div className="row  justify-content-center">
@@ -229,7 +232,7 @@ class Board extends Component{
                                         <button type="button" id="sidebarCollapse" className="btn btn-outline-light btn-bar" onClick={this.collapse1}>
                                             <i className="fas fa-plus"></i>
                                         </button>
-                                        <button type="button" id="sidebarCollapse2" className="btn btn-outline-light btn-chat" onClick={this.collapse2}>
+                                        <button type="button" id="sidebarCollapse2" className="btn btn-outline-secondary btn-chat" onClick={this.collapse2}>
                                             <i className="fas fa-comments"></i>
                                         </button>
                                     </div>
@@ -248,7 +251,7 @@ class Board extends Component{
                                             </button>
                                         </div>
                                         <div className="modal-body">
-                                            U sure?
+                                           R  U Sure?
                                         </div>
                                         <div className="modal-footer">
                                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -316,28 +319,6 @@ class Board extends Component{
                         </section>
                     </div>
                 </div>
-                {/* <div className="chat-box">
-                    <div className="">
-                        <nav id="sidebar2">
-                            <div className="head2">
-                                <div id="chat-heading">
-                                    <h6>Group Chat</h6>
-                                </div>
-                                <button id="dismiss2" className="btn btn-outline-light" onClick={this.collapse2}>
-                                    <i className="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
-                            <div className="msg_body scroller">
-                                <div className="msg">
-                                    <p><span className="msg-headers">name | date</span><br/>pok boy m </p>
-                                </div>
-                            </div>
-                            <div className="foot">
-                                <textarea name="" id="" cols="40" rows="10" placeholder="type a message"></textarea>
-                            </div>
-                        </nav>
-                    </div>
-                </div> */}
             </div>
         );
     }

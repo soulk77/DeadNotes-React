@@ -15,12 +15,15 @@ class ChatBox extends Component{
 
     componentDidMount(){
         this.fetchMessages();
+        // this.interval = setInterval(()=>{
+        //     this.fetchMessages()},1000);
+        
     }
 
-    componentDidUpdate(){
-        let objDiv = document.querySelector('.scroller');
-        objDiv.scrollTop = objDiv.scrollHeight;
-    }
+    // componentDidUpdate(){
+    //     let objDiv = document.querySelector('.scroller');
+    //     objDiv.scrollTop = objDiv.scrollHeight;
+    // }
 
     handleKeyPress(e){        
         if(e.key === 'Enter'){
@@ -40,11 +43,12 @@ class ChatBox extends Component{
                         message: message
                     }            
                }).done ( data => {
-                    this.fetchMessages();
+                    this.componentDidMount();
+                    setInterval(()=>{let objDiv = document.querySelector('.scroller');
+                    objDiv.scrollTop = objDiv.scrollHeight;},300)
                });
             }
-        }
-  
+        }  
     }
 
     fetchMessages(){
@@ -78,31 +82,6 @@ class ChatBox extends Component{
                             </div>
                             <ul className="msg_body scroller list-unstyled">
                                 <Messages messages={this.state.messages} />
-                                {/* <li className="msg">
-                                    <p><span className="msg-headers">name</span><br/>
-                                    pok boy m wewef wefwf<br/>
-                                    <span className="msg-headers">2000/00/00 12:12:12</span></p>
-                                </li>
-                                <li className="msg">
-                                    <p><span className="msg-headers">name</span><br/>
-                                    pok boy m wewef wefwf<br/>
-                                    <span className="msg-headers">2000/00/00 12:12:12</span></p>
-                                </li>
-                                <li className="msg_send">
-                                    <p><span className="msg-headers">name</span><br/>
-                                    pok boy m wewef wefwf<br/>
-                                    <span className="msg-headers">2000/00/00 12:12:12</span></p>
-                                </li>
-                                <li className="msg">
-                                    <p><span className="msg-headers">name</span><br/>
-                                    pok boy m wewef wefwf<br/>
-                                    <span className="msg-headers">2000/00/00 12:12:12</span></p>
-                                </li>
-                                <li className="msg">
-                                    <p><span className="msg-headers">name</span><br/>
-                                    pok boy m wewef wefwf<br/>
-                                    <span className="msg-headers">2000/00/00 12:12:12</span></p>
-                                </li> */}
                             </ul>
                             <div className="foot">
                                 <textarea  id="textarea" cols="40" rows="10" placeholder="type a message" 

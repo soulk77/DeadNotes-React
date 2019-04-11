@@ -72,15 +72,15 @@ class Foot extends Component{
     clearTasks(){
         let id = localStorage.getItem('activeGroup');
         $.ajax({
-            url: 'http://localhost:8080/api/tasks/assign',
+            url: 'http://localhost:8080/api/tasks/clear/'+id,
             dataType: 'json',
-            type: 'POST',
+            type: 'DELETE',
             data: {
                 id: id,
             }
         }).done(data => {
             console.log('ok');
-            // this.props.handler();
+            this.props.handler();
         });
 
     }
@@ -102,7 +102,7 @@ class Foot extends Component{
                                 </button>
                             </div>
                             <div className="modal-body">
-                                U sure?
+                               R U sure?
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

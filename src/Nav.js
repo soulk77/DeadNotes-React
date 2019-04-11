@@ -32,6 +32,7 @@ class NavMenu extends Component {
                     <div className="collapse navbar-collapse bg-black" id="navbarTogglerDemo02">
                       <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                          <NavLink label="Home" to="/" location={this.props.location.pathname} />
+                         <NavLink label="Info" to="/info" location={this.props.location.pathname} />
                          <NavLink label="Login" to="/login" location={this.props.location.pathname} />
                          <NavLink label="Register" to="/register" location={this.props.location.pathname} />
                       </ul>

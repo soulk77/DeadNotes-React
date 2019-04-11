@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import './groups.css';
-import './flipclock.css';
 import { UserContext } from '../UserContext';
 import Bubbles from './Bubbles';
 import Delete from './Delete';
 import Nav from '../Nav';
 import $ from 'jquery';
-// import FlipClock from './flipclock';
 
 class Groups extends Component {
 
@@ -26,7 +24,7 @@ class Groups extends Component {
     handleSubmit(selected){
         const sel = parseInt(selected.current.value);
         const user = localStorage.getItem('username');
-        window.$.ajax({
+        $.ajax({
             url: 'http://localhost:8080/api/group/delete',
             dataType: 'json',
             type: 'POST',
@@ -66,7 +64,7 @@ class Groups extends Component {
             data: {
                 username: user
             }
-        }).done(data => {
+        }).done((data) => {
             this.setState({
                 groupsCreated: data
             });
@@ -76,20 +74,7 @@ class Groups extends Component {
     componentDidMount(){
         this.fetchAllGroups();
         this.fetchCreatedGroupds();
-        // this.theClock();
-
     }
-
-    // theClock(){
-    //     var clock;
-    
-    //     $(document).ready(()=> {
-    //         clock = $('.clock').FlipClock({
-    //             clockFace: 'TwentyFourHourClock',
-    //             showSeconds: false
-    //         });
-    //     });
-    // }
 
     applyModal(e){
         const name = this.groupName.current.value;
@@ -104,11 +89,7 @@ class Groups extends Component {
                 username: user
             }
         }).done((data)=>{
-            console.log('ok');
-            this.setState({
-                groups: data
-            });
-
+            this.fetchAllGroups();
         }).catch((e)=>{
             console.log('not ok');
         })
@@ -170,16 +151,3 @@ class Groups extends Component {
 }
 
 export default Groups;
-
-// export const Clock2 = props =>{
-
-//     return(
-//         <React.Fragment>
-            
-//             <div class="clock m-0 pl-5 pt-5" ></div>
-//             <script src="flipclock.js"></script>
-//         </React.Fragment>
-//     )
-
-
-// }

@@ -12,6 +12,16 @@ class MainModal extends Component{
         this.deleteTask = this.deleteTask.bind(this);
     }
 
+    sendEmail(id){
+        $.ajax({
+            url: 'http://localhost:8080/api/sendEmail/'+id,
+            dataType: 'json',
+            type: 'POST'
+        }).done(data => {
+            console.log('email sent');
+        });  
+    }
+
     modalMounted(refToModal) {
         const hideFun = () => {
            this.props.onHide(this.userChoice); 
@@ -25,14 +35,13 @@ class MainModal extends Component{
     
     markCompleted(id) {
         this.$modalDOMElem.modal('hide');
-        console.log(id);
-        console.log("inside completed")
         $.ajax({
             url: 'http://localhost:8080/api/task/completed/'+id,
             dataType: 'json',
             type: 'PUT'
         }).done(data => {
             this.props.handler();
+            this.sendEmail(id);
         });    
 
     }

@@ -14,49 +14,27 @@ class Messages extends Component{
         return(
             <React.Fragment>
                 {Object.keys(messages).map( k =>{
+                    let date  = new Date(messages[k].time).toLocaleTimeString();
+                    let date1  = new Date(messages[k].time).toLocaleDateString();
+                    let fullDate = date1 +' '+ date;
                     if(messages[k].sender.username === activeUser){
                         return(
                                 <li className="msg_send" key={k}>
-                                    <p><span className="msg-headers">you</span><br/>
-                                    {messages[k].message}<br/>
-                                    <span className="msg-headers">{messages[k].time}</span></p>
+                                    <p><span className="d-block msg-headers msg-headers-username">you</span>
+                                    {messages[k].message}
+                                    <span className="d-block msg-headers">{fullDate}</span></p>
                                 </li>         
                         );              
                     }else{
                         return(
                             <li className="msg" key={k}>
-                                <p><span className="msg-headers">{messages[k].sender.username}</span><br/>
-                                {messages[k].message}<br/>
-                                <span className="msg-headers">{messages[k].time}</span></p>
+                                <p><span className="d-block msg-headers msg-headers-username">{messages[k].sender.username}</span>
+                                {messages[k].message}
+                                <span className="d-block msg-headers">{fullDate}</span></p>
                             </li>   
                         );
                     }
                 })}
-                {/* <li className="msg">
-                    <p><span className="msg-headers">name</span><br/>
-                    pok boy m wewef wefwf<br/>
-                    <span className="msg-headers">2000/00/00 12:12:12</span></p>
-                </li>
-                <li className="msg">
-                    <p><span className="msg-headers">name</span><br/>
-                    pok boy m wewef wefwf<br/>
-                    <span className="msg-headers">2000/00/00 12:12:12</span></p>
-                </li>
-                <li className="msg_send">
-                    <p><span className="msg-headers">name</span><br/>
-                    pok boy m wewef wefwf<br/>
-                    <span className="msg-headers">2000/00/00 12:12:12</span></p>
-                </li>
-                <li className="msg">
-                    <p><span className="msg-headers">name</span><br/>
-                    pok boy m wewef wefwf<br/>
-                    <span className="msg-headers">2000/00/00 12:12:12</span></p>
-                </li>
-                <li className="msg">
-                    <p><span className="msg-headers">name</span><br/>
-                    pok boy m wewef wefwf<br/>
-                    <span className="msg-headers">2000/00/00 12:12:12</span></p>
-                </li> */}
              </React.Fragment>
         );
     }
