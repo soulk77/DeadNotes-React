@@ -15,15 +15,9 @@ class ChatBox extends Component{
 
     componentDidMount(){
         this.fetchMessages();
-        // this.interval = setInterval(()=>{
+        // this.interval = setInterval(()=>{ // For Live-Chating
         //     this.fetchMessages()},1000);
-        
     }
-
-    // componentDidUpdate(){
-    //     let objDiv = document.querySelector('.scroller');
-    //     objDiv.scrollTop = objDiv.scrollHeight;
-    // }
 
     handleKeyPress(e){        
         if(e.key === 'Enter'){

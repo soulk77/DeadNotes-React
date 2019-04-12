@@ -159,12 +159,8 @@ class MainModal extends Component{
                                                     </div>
                                                 </div>
                                                 </div>
-                                                <div className="modal-footer">
-                                                {/* <ModalButtons task={task} creator={creator} onHide={this.props.onHide} 
-                                                                markCompleted={this.markCompleted} /> */}
-                                                                
+                                                <div className="modal-footer">             
                                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                {/* <button type="button" className="btn btn-success" onClick={this.markCompleted}>Completed</button> */}
                                                 </div>
                                             </div>
                                         </div>
@@ -192,10 +188,7 @@ class MainModal extends Component{
                                             </div>
                                         </div>
                                         </div>
-                                        <div className="modal-footer">
-                                        {/* <ModalButtons task={task} creator={creator} onHide={this.props.onHide} 
-                                                        markCompleted={this.markCompleted} /> */}
-                                                        
+                                        <div className="modal-footer">          
                                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button type="button" className="btn btn-success" onClick={this.markCompleted}>Completed</button>
                                         </div>
@@ -226,10 +219,7 @@ class MainModal extends Component{
                                         </div>
                                     </div>
                                     </div>
-                                    <div className="modal-footer">
-                                    {/* <ModalButtons task={task} creator={creator} onHide={this.props.onHide} 
-                                                    markCompleted={this.markCompleted} /> */}
-                                                    
+                                    <div className="modal-footer">                
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>

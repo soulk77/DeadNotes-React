@@ -33,9 +33,9 @@ class Login extends Component{
         }).done( (json) =>{
             console.log("ok");
             localStorage.setItem('token', json.token.uuid);   
-            localStorage.setItem('username',username);
+            localStorage.setItem('username',json.username);
 
-            this.context.setUserData(json.token.uuid, username);
+            this.context.setUserData(json.token.uuid, json.username);
 
             this.props.history.push('/');
         }).catch((e)=>{

@@ -159,168 +159,174 @@ class Board extends Component{
 
     render(){
         let groupName = localStorage.getItem('groupName');
-        return(
-            <div className = "board">
-                <Nav />
-                <div className="wrapper">
-                    <nav id="sidebar">
-                        <button id="dismiss" className="btn btn-outline-light" onClick={this.collapse1}>
-                            <i className="fas fa-arrow-left"></i>
-                        </button>
-                        <div className="sidebar-header">
-                            <h3 className="w-75">{groupName}</h3>
-                        </div>
-                        <ul className="components ml-2">
-                            <p><u className="font-weight-bold">Group Users</u></p>
-                            <GroupUsersLi list = {this.state.groupsUsers} creator = {this.state.creator} />
-                        </ul>
-                        <ul className="list-unstyled CTAs">
-                            <Buttons creator = {this.state.creator}  addUserToGroup = {this.addUserToGroup} />
-                        </ul>
-                    </nav>
-                    <div id="content">
-                        <section >
-                            <div>
-                                <div  className="container outC mt-0">
-                                    <div className="row outR">
-                                        <div className="one column col-3 p-0">
-                                            <div className="headBee">
-                                                <h4>Dead</h4>
-                                            </div>
-                                            <div  className="container scrollerBee">
-                                                <div className="row  justify-content-center">
-                                                  <MainTasks list={this.state.tasksExpired} creator={this.state.creator} status={3} 
-                                                             handler = {this.handler}/>
-                                                             <br/>
-                                                  <MainTasks list={this.state.tasksCompleted} creator={this.state.creator} status={4} 
-                                                             handler = {this.handler}/>
-
+        if(groupName){
+            return(
+                <div className = "board">
+                    <Nav />
+                    <div className="wrapper">
+                        <nav id="sidebar">
+                            <button id="dismiss" className="btn btn-outline-light" onClick={this.collapse1}>
+                                <i className="fas fa-arrow-left"></i>
+                            </button>
+                            <div className="sidebar-header">
+                                <h3 className="w-75">{groupName}</h3>
+                            </div>
+                            <ul className="components ml-2">
+                                <p><u className="font-weight-bold">Group Users</u></p>
+                                <GroupUsersLi list = {this.state.groupsUsers} creator = {this.state.creator} />
+                            </ul>
+                            <ul className="list-unstyled CTAs">
+                                <Buttons creator = {this.state.creator}  addUserToGroup = {this.addUserToGroup} />
+                            </ul>
+                        </nav>
+                        <div id="content">
+                            <section >
+                                <div>
+                                    <div  className="container outC mt-0">
+                                        <div className="row outR">
+                                            <div className="one column col-3 p-0">
+                                                <div className="headBee">
+                                                    <h4>Dead</h4>
                                                 </div>
-                                            </div>
-
-                                        </div>
-                                        <div className="two column col-3 col-md-6">
-                                            <div className="headBee headC">
-                                                <h4>Due</h4>
-                                            </div>
-                                            <div className="container scrollerBee mt-4">
-                                                <div className="row  justify-content-center">
-                                                    <MainTasks list = {this.state.tasksMain} creator = {this.state.creator} status={1}
+                                                <div  className="container scrollerBee">
+                                                    <div className="row  justify-content-center">
+                                                    <MainTasks list={this.state.tasksExpired} creator={this.state.creator} status={3} 
                                                                 handler = {this.handler}/>
+                                                                <br/>
+                                                    <MainTasks list={this.state.tasksCompleted} creator={this.state.creator} status={4} 
+                                                                handler = {this.handler}/>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div className="two column col-3 col-md-6">
+                                                <div className="headBee headC">
+                                                    <h4>Due</h4>
+                                                </div>
+                                                <div className="container scrollerBee mt-4">
+                                                    <div className="row  justify-content-center">
+                                                        <MainTasks list = {this.state.tasksMain} creator = {this.state.creator} status={1}
+                                                                    handler = {this.handler}/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="one column col-3 p-0">
+                                                <div className="headBee">
+                                                    <h4>Perpetual</h4>
+                                                </div>
+                                                <div className="container scrollerBee">
+                                                    <div className="row  justify-content-center">
+                                                        <MainTasks list = {this.state.tasksForEver} creator = {this.state.creator} 
+                                                        status={2} handler = {this.handler}  />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="one column col-3 p-0">
-                                            <div className="headBee">
-                                                <h4>Perpetual</h4>
+                                    </div>
+                                </div>
+                            </section>
+                                <div className="container outC mt-3 theFoot">
+                                    <div className="row outR">
+                                        <Foot list={this.state.groupsUsers} handler = {this.handler}  creator = {this.state.creator} />
+                                        <div>
+                                            <button type="button" id="sidebarCollapse" className="btn btn-outline-light btn-bar" onClick={this.collapse1}>
+                                                <i className="fas fa-plus"></i>
+                                            </button>
+                                            <button type="button" id="sidebarCollapse2" className="btn btn-outline-secondary btn-chat" onClick={this.collapse2}>
+                                                <i className="fas fa-comments"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            <section>
+                            <ChatBox collapse2={this.collapse2} />
+                            <div className="modal fade" id="LeaveModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div className="modal-dialog" role="document">
+                                        <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h5 className="modal-title" id="exampleModalLabel">Leave Group</h5>
+                                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
                                             </div>
-                                            <div className="container scrollerBee">
-                                                <div className="row  justify-content-center">
-                                                    <MainTasks list = {this.state.tasksForEver} creator = {this.state.creator} 
-                                                    status={2} handler = {this.handler}  />
-                                                </div>
+                                            <div className="modal-body">
+                                            R  U Sure?
+                                            </div>
+                                            <div className="modal-footer">
+                                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" className="btn btn-primary" onClick={this.leaveGroup}
+                                                data-dismiss="modal">submit</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </section>
-                            <div className="container outC mt-3 theFoot">
-                                <div className="row outR">
-                                    <Foot list={this.state.groupsUsers} handler = {this.handler}  creator = {this.state.creator} />
-                                    <div>
-                                        <button type="button" id="sidebarCollapse" className="btn btn-outline-light btn-bar" onClick={this.collapse1}>
-                                            <i className="fas fa-plus"></i>
-                                        </button>
-                                        <button type="button" id="sidebarCollapse2" className="btn btn-outline-secondary btn-chat" onClick={this.collapse2}>
-                                            <i className="fas fa-comments"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        <section>
-                        <ChatBox collapse2={this.collapse2} />
-                         <div className="modal fade" id="LeaveModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div className="modal-dialog" role="document">
-                                    <div className="modal-content">
-                                        <div className="modal-header">
-                                            <h5 className="modal-title" id="exampleModalLabel">Leave Group</h5>
-                                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div className="modal-body">
-                                           R  U Sure?
-                                        </div>
-                                        <div className="modal-footer">
-                                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" className="btn btn-primary" onClick={this.leaveGroup}
-                                             data-dismiss="modal">submit</button>
+                                <div className="modal fade" id="dismissUserModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div className="modal-dialog" role="document">
+                                        <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h5 className="modal-title" id="exampleModalLabel">Dismiss User From Group</h5>
+                                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div className="modal-body">
+                                                <form >
+                                                    <div className="form-group">
+                                                        <label htmlFor="user">Select User</label>
+                                                        <select className="form-control form-control-sm" id="user" ref={this.userToDismiss}>
+                                                        <GroupUsersSelect  list = {this.state.groupsUsers} />
+                                                        </select>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div className="modal-footer">
+                                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" className="btn btn-primary" data-dismiss="modal"
+                                                    onClick={this.dismissUser}>submit</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="modal fade" id="dismissUserModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div className="modal-dialog" role="document">
-                                    <div className="modal-content">
-                                        <div className="modal-header">
-                                            <h5 className="modal-title" id="exampleModalLabel">Dismiss User From Group</h5>
-                                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div className="modal-body">
-                                            <form >
-                                                <div className="form-group">
-                                                    <label htmlFor="user">Select User</label>
-                                                    <select className="form-control form-control-sm" id="user" ref={this.userToDismiss}>
-                                                    <GroupUsersSelect  list = {this.state.groupsUsers} />
-                                                    </select>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div className="modal-footer">
-                                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" className="btn btn-primary" data-dismiss="modal"
-                                                onClick={this.dismissUser}>submit</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="modal fade" id="addUserModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div className="modal-dialog" role="document">
-                                    <div className="modal-content">
-                                        <div className="modal-header">
-                                            <h5 className="modal-title" id="exampleModalLabel">Add User to Group</h5>
-                                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div className="modal-body">
-                                            <form>
-                                                <div className="form-group">
-                                                    <label htmlFor="user">User</label>
-                                                    <input type="text" className="form-control" placeholder="username" id="user" required  
-                                                           ref={this.newUser}/>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div className="modal-footer">
-                                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" className="btn btn-primary" onClick={this.addUserToGroup} 
-                                                    data-dismiss="modal">submit</button>
+                                <div className="modal fade" id="addUserModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div className="modal-dialog" role="document">
+                                        <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h5 className="modal-title" id="exampleModalLabel">Add User to Group</h5>
+                                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div className="modal-body">
+                                                <form>
+                                                    <div className="form-group">
+                                                        <label htmlFor="user">User</label>
+                                                        <input type="text" className="form-control" placeholder="username" id="user" required  
+                                                            ref={this.newUser}/>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div className="modal-footer">
+                                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" className="btn btn-primary" onClick={this.addUserToGroup} 
+                                                        data-dismiss="modal">submit</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </section>
+                            </section>
+                        </div>
                     </div>
                 </div>
-            </div>
-        );
+            );
+        }else{
+            return(
+                <h3>No Active Group</h3>
+            );
+        }
     }
      collapse1(){
         let collapse = document.getElementById('sidebar');

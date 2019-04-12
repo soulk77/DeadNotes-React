@@ -167,6 +167,7 @@ ul.CTAs {
 
 .completed {
     border: 2px solid #c5fad9;
+    
 }
 
 .dead {
@@ -175,6 +176,7 @@ ul.CTAs {
 
 .still-alive {
     border: 2px solid #f8a978;
+    word-break: break-word;
 }
 
 .two .bubble2 {
