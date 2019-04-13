@@ -38,8 +38,8 @@ class ChatBox extends Component{
                     }            
                }).done ( data => {
                     this.componentDidMount();
-                    setInterval(()=>{let objDiv = document.querySelector('.scroller');
-                    objDiv.scrollTop = objDiv.scrollHeight;},300)
+                    // setInterval(()=>{let objDiv = document.querySelector('.scroller'); // A bug
+                    // objDiv.scrollTop = objDiv.scrollHeight;},300);
                });
             }
         }  

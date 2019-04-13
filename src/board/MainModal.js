@@ -59,6 +59,8 @@ class MainModal extends Component{
     }
 
 
+   // An ugly impl of the modal to change the buttons for each user
+   
 
     render(){
         let activeUser = localStorage.getItem('username');
